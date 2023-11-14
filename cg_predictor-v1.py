@@ -1,18 +1,8 @@
 # The following code calculates your cg
 
-
+#------------------------------------V1---------------------------
 
 from tkinter import *
-
-def calc(marks):
-    global credits
-    sum = 0
-    n = 0 
-    for i in marks:
-        sum = sum +(i*credits[n])
-        n+=1
-    cg = sum/18
-    return cg 
 
 def photoimage():
     global py_icon
@@ -31,12 +21,12 @@ def win_ini(x,y):
     #window.iconphoto(True,py_icon)
     window.config(background = bgcolor)# backgroud color
 
-def label(X,Y,course):
+def label(X,Y,txt):
     global window
     global txtcolor
     global bgcolor
     label = Label(window,
-              text = course,
+              text = txt,
               font=("Arial", 20 ,"bold") ,
               fg = txtcolor ,
               bg = bgcolor,
@@ -46,47 +36,76 @@ def label(X,Y,course):
     #label.pack()
     label.place(x=X , y=Y)
 
-def labelcreate():
-    global credits
-    n=10
-    for i in courses:
-        label(10,n,i)
-        n+=70
-
 def button(x,y):
     button = Button(window,
                 text  = "Calculate",
-                command = calc ,
+                command = Processing ,
                 font=("Arial", 30 ,"bold"),
                 fg = "black",
                 bg = "#E6E6FA",
                 activeforeground = "black",
                 activebackground = "purple",
-                state = ACTIVE,
-
+                state = ACTIVE
                 )
     button.place(x=x,y=y)
 
-marks = []
-credits = [4,4,4,2,2,2]
+def entry(x,y,i):
+    global window
+    global Marks
+    Marks[i] = Entry(window,
+                font=("Arial",30,"bold"),
+                fg = txtcolor,
+                bg = bgcolor
+                )
+    Marks[i].place(x=x,y=y)
+
+def LabelAndEntryCreate():
+    global credits
+    n=10
+    for i in courses:
+        label(10,n,i)
+        entry(200,n,i)
+        n+=70
+
+def VariableAssigner():
+    global Marks
+    for i in courses:
+        Marks[i]=int(Marks[i].get())
+
+def calc():
+    global Marks
+    global credits_dict
+    global credits_list
+    global credit_total
+    global courses
+    VariableAssigner()
+    sum = 0 
+    for i in courses:
+        sum+=(Marks[i]*credits_dict[i])
+    cg = (sum/credits_total)
+    return cg  
+
+def Processing():
+    cg = calc()
+    txt = "Your expected cg is : "+str(cg)
+    label(900,100,txt)
+
+
+#variable declaration
+Marks = {} #decalaring a dictionary
+credits_list = [4,4,4,2,2,2]
+credits_total = sum(credits_list)
 courses = ['mtl100','apl100','cml101','mcp100','mcp101','cmp101']
 bgcolor = "black"
 txtcolor = "white"
+credits_dict = dict(zip(courses,credits_list))#making a dictionary
 
+
+# main code 
 win_ini(1500,700)
 
-labelcreate()
+LabelAndEntryCreate()
 
 button(50,600)
 
 window.mainloop()
-
-
-""""
-print("This program calculates your expected cg")
-for i in range(0,6):
-    a=input(courses[i]+" Score:")
-    marks.append(int(a))
-
-print(calc(marks))
-"""
