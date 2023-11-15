@@ -4,9 +4,9 @@
 
 from tkinter import *
 
-def photoimage():
-    global py_icon
-    global world_icon
+#def photoimage():
+    #global py_icon
+    #global world_icon
     #py_icon = PhotoImage(file=r"C:\Users\arnav\OneDrive - IIT Delhi\Codes\Python\Python GUI\python logo.png")
     #world_icon = PhotoImage(file=r"C:\Users\arnav\OneDrive - IIT Delhi\Codes\Python\Python GUI\world.png")
 
@@ -14,7 +14,7 @@ def win_ini(x,y):
     global window
     global bgcolor
     window = Tk()# instantiate an instance of a window
-    photoimage()# creating images
+    #photoimage()# creating images
     #--------------------Appreance of windows-----------------------
     window.geometry(str(x)+"x"+str(y))# define the geometry of our window
     window.title("CG calcultor & predictor")#windows title
@@ -86,10 +86,9 @@ def calc():
     return cg  
 
 def Processing():
-    cg = calc()
+    cg = round(calc()*1000)/1000 # rounds off to 3 decimal places
     txt = "Your expected cg is : "+str(cg)
     label(900,100,txt)
-
 
 #variable declaration
 Marks = {} #decalaring a dictionary
