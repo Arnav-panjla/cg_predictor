@@ -1,11 +1,7 @@
 # cg_predictor
-a cg predictor for sem-1 at iitd
+a cg predictor for students of IITD
 <br>
-cg_predictor-V1 -- this version will just calculate your cg based on your predicted marks
+cg_predictor-V1 -- This version will calculate your cg for sem-1 (Batch-A)
 <br>
-cg_predictor-V2 -- this will approximate your grades with your marks using previous avaliable data
-<br>
-cg_preductor-V3 -- similar to V2 but this time, data will be taken using normal distribution curves
-<br>
-cg_predictor-V4 -- here its gets interesting, the program will take your expected cg and will guide you to achieve your dream cg
+cg_predictor-V2 -- This will calculate your overall cg based on your prediction (both batch A & B) 
 <br>
